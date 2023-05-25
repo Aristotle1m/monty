@@ -1,4 +1,10 @@
-include <unistd.h>
+#ifndef MONTY_H
+#define _GNU_SOURCE
+#define MONTY_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
 #include <ctype.h>
@@ -71,3 +77,4 @@ void addqueue(stack_t **head, int n);
 void f_queue(stack_t **head, unsigned int counter);
 void f_stack(stack_t **head, unsigned int counter);
 #endif
+
