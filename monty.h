@@ -1,0 +1,78 @@
+#ifndef MONTY_H
+#define MONTY_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <ctype.h>
+/**
+ * struct stack_s - doubly linked list representation of a stack (or queue)
+ * @n: nos of integer
+ * @prev: points to the previous element of the stack (or queue)
+ * @next: points to the next element of the stack (or queue)
+ *
+ * Description: doubly linked list node structure
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
+typedef struct stack_s
+{
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
+} stack_t;
+/**
+ * struct bus_s - variables -args, file, line content
+ * @arg: values of arguments.
+ * @file: pointer to monty files
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ * Description: carries values through the program
+ */
+typedef struct bus_s
+{
+	char *arg;
+	FILE *file;
+	char *content;
+	int lifi;
+}  bus_t;
+extern bus_t bus;
+/**
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
+typedef struct instruction_s
+{
+	char *opcode;
+	void (*c)(stack_t **stack, unsigned int line_number);
+} instruction_t;
+char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
+ssize_t getstdin(char **lineptr, int file);
+char  *clean_line(char *content);
+void c_push(stack_t **max, unsigned int number);
+void c_pall(stack_t **max, unsigned int number);
+void c_pint(stack_t **max, unsigned int number);
+int execute(char *content, stack_t **max, unsigned int counter, FILE *file);
+void free_stack(stack_t *max);
+void c_pop(stack_t **max, unsigned int counter);
+void c_swap(stack_t **max, unsigned int counter);
+void c_add(stack_t **max, unsigned int counter);
+void c_nop(stack_t **max, unsigned int counter);
+void c_sub(stack_t **max, unsigned int counter);
+void c_div(stack_t **max, unsigned int counter);
+void c_mul(stack_t **max, unsigned int counter);
+void c_mod(stack_t **max, unsigned int counter);
+void c_pchar(stack_t **max, unsigned int counter);
+void c_pstr(stack_t **max, unsigned int counter);
+void c_rotl(stack_t **max, unsigned int counter);
+void c_rotr(stack_t **max, __attribute__((unused)) unsigned int counter);
+void addnode(stack_t **max, int n);
+void addqueue(stack_t **max, int n);
+void c_queue(stack_t **max, unsigned int counter);
+void c_stack(stack_t **max, unsigned int counter);
+#endif
